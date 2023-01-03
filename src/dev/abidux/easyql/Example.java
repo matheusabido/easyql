@@ -15,6 +15,12 @@ public class Example {
     private static final Table<ExampleTable.Example> EXAMPLE_TABLE = new ExampleTable();
 
     public static void main(String[] args) {
+        // OPTIONAL: takes some time to run
+        if (!EaSyQL.isUpdated()) {
+            EaSyQL.sendOutdatedMessage();
+        }
+
+        // USAGE
         ArrayList<ExampleTable.Example> list = new ArrayList<>();
         SQL.connect(connection -> {
             Statements statements = new Statements(connection);
@@ -49,7 +55,6 @@ public class Example {
                 System.out.println("Chicken deleted.");
             }
         });
-
     }
 
     private static void populateExampleTable(Statements statements) {
